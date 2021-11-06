@@ -1,0 +1,44 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'demo'
+version = '0.0.1'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    //implementation  当前项目依赖，当其他项目引入本项目依赖时，不会引入
+    //mybatis、mysql
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
+    //runtimeOnly 运行时才依赖
+    runtimeOnly 'mysql:mysql-connector-java'
+    //redis
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    // 数据库连接druid
+    implementation group: 'com.alibaba', name: 'druid-spring-boot-starter', version: '1.1.22'
+
+    // mybatis-plus 分页插件
+    implementation 'com.baomidou:mybatis-plus-boot-starter:3.4.3'
+    //mybatis-plus代码生成器
+    implementation 'com.baomidou:mybatis-plus-generator:3.4.1'
+    //mybatis-plus模板引擎 依赖
+    implementation 'org.apache.velocity:velocity-engine-core:2.3'
+    //swagger 接口文档
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+    //lombok
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+}
+
+test {
+    useJUnitPlatform()
+}

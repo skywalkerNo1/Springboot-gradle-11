@@ -1,0 +1,43 @@
+server:
+  port: 8881
+
+spring:
+  jackson: #该配置是用于解决jackson对于时间格式的配置
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:  #密码
+    database: 0 #指定数据库，默认db0
+    ssl: false  #是否使用ssl连接， 默认false
+    timeout: 200 # 连接超时时间 单位毫秒 默认0
+    #Springboot2.x之后,需要指定是jedis还是lettuce， pool正确的用法是spring.redis.jedis.pool或者spring.redis.lettuce.pool
+    jedis:
+      pool:
+        max-active: 8 #最大活跃连接数 默认8
+        max-idle: 8 # 最大空闲连接数 默认8
+        max-wait: -1 # 获取连接的最大等待时长，默认-1，表示无限制,单位毫秒. 默认值可能会因为获取不到连接，导致事务无法提交，数据库被锁，大量线程处于等待状态
+        min-idle: 0 # 最小空闲连接数， 默认0
+  datasource:  # 数据库连接配置
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/demo?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&failOverReadOnly=false&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    druid:
+      max-active: 1000 #最大连接数
+      initial-size: 100 # 连接池初始化大小
+      max-wait: 60000 # 获取连接的最大等待时长，单位毫秒
+      min-idle: 500 # 最小保留数
+      time-between-eviction-runs-millis: 60000 # 检测关闭空闲连接的间隔时间，单位毫秒
+      min-evictable-idle-time-millis: 300000 # 连接的最小生存时间，单位毫秒
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  type-aliases-package: demo.model
+
+logging:
+  level:  # 此配置用于打印sql请求日志
+    demo: debug
+  config: classpath:logback-spring.xml  # 此配置用于打印log日志
+
