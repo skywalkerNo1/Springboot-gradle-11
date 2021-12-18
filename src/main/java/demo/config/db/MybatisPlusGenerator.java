@@ -1,8 +1,6 @@
 package demo.config.db;
 
-
 import com.baomidou.mybatisplus.annotation.DbType;
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
